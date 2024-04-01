@@ -17,8 +17,8 @@ import requests
 import pandas as pd
 import numpy as np
 # import openpyxl
-from openpyxl import Workbook, load_workbook
-from openpyxl.styles import Border, Side, Font, Alignment, PatternFill, numbers
+# from openpyxl import Workbook, load_workbook
+# from openpyxl.styles import Border, Side, Font, Alignment, PatternFill, numbers
 from dotenv import load_dotenv
 import os
 load_dotenv('.env')
@@ -157,65 +157,65 @@ def write_data_to_excel(arbitrage_events, dataframe):
 # ### Formatting the Excel File
 
 # %%
-def format_excel(MAX_OUTCOMES, ARBITRAGE_EVENTS_COUNT):
-    BLACK = '000000'
-    LIGHT_GREY = 'D6D6D6'
-    DARK_GREY = '9F9F9F'
-    RED = 'FEA0A0'
-    BLUE = 'A0CEFE'
-    YELLOW = 'FFE540'
+# def format_excel(MAX_OUTCOMES, ARBITRAGE_EVENTS_COUNT):
+#     BLACK = '000000'
+#     LIGHT_GREY = 'D6D6D6'
+#     DARK_GREY = '9F9F9F'
+#     RED = 'FEA0A0'
+#     BLUE = 'A0CEFE'
+#     YELLOW = 'FFE540'
 
-    COLORS = [RED, BLUE]
+#     COLORS = [RED, BLUE]
 
-    ID_COLUMN_FILL = PatternFill(fill_type='solid', start_color=DARK_GREY, end_color=DARK_GREY)
-    SPORT_KEY_COLUMN_FILL = PatternFill(fill_type='solid', start_color=LIGHT_GREY, end_color=LIGHT_GREY)
-    EXPECTED_EARNINGS_COLUMN_FILL = PatternFill(fill_type='solid', start_color=YELLOW, end_color=YELLOW)
+#     ID_COLUMN_FILL = PatternFill(fill_type='solid', start_color=DARK_GREY, end_color=DARK_GREY)
+#     SPORT_KEY_COLUMN_FILL = PatternFill(fill_type='solid', start_color=LIGHT_GREY, end_color=LIGHT_GREY)
+#     EXPECTED_EARNINGS_COLUMN_FILL = PatternFill(fill_type='solid', start_color=YELLOW, end_color=YELLOW)
 
-    CENTER_ALIGNMENT = Alignment(horizontal='center', vertical='bottom', indent=0)
+#     CENTER_ALIGNMENT = Alignment(horizontal='center', vertical='bottom', indent=0)
 
-    TOP_ROW_BORDER = Border(bottom=Side(border_style='thick', color=BLACK))
-    NORMAL_ROW_BORDER = Border(top=Side(border_style='thin', color=LIGHT_GREY), bottom=Side(border_style='thin', color=DARK_GREY))
+#     TOP_ROW_BORDER = Border(bottom=Side(border_style='thick', color=BLACK))
+#     NORMAL_ROW_BORDER = Border(top=Side(border_style='thin', color=LIGHT_GREY), bottom=Side(border_style='thin', color=DARK_GREY))
 
-    wb = load_workbook('bets.xlsx')
-    ws = wb.active
-    ws.title = 'Upcoming'
-    # changing width
-    for col in range(1, 26):
-        ws.column_dimensions[chr(col + 64)].width = 20
+#     wb = load_workbook('bets.xlsx')
+#     ws = wb.active
+#     ws.title = 'Upcoming'
+#     # changing width
+#     for col in range(1, 26):
+#         ws.column_dimensions[chr(col + 64)].width = 20
 
-    for cell in ws['A']:
-        cell.fill = ID_COLUMN_FILL
-        cell.alignment = CENTER_ALIGNMENT
+#     for cell in ws['A']:
+#         cell.fill = ID_COLUMN_FILL
+#         cell.alignment = CENTER_ALIGNMENT
         
-    for cell in ws['B']:
-        cell.fill = SPORT_KEY_COLUMN_FILL
-        cell.alignment = CENTER_ALIGNMENT
+#     for cell in ws['B']:
+#         cell.fill = SPORT_KEY_COLUMN_FILL
+#         cell.alignment = CENTER_ALIGNMENT
         
-    for cell in ws['C']:
-        cell.fill = EXPECTED_EARNINGS_COLUMN_FILL
-        cell.alignment = CENTER_ALIGNMENT
-        cell.number_format = numbers.BUILTIN_FORMATS[7]
+#     for cell in ws['C']:
+#         cell.fill = EXPECTED_EARNINGS_COLUMN_FILL
+#         cell.alignment = CENTER_ALIGNMENT
+#         cell.number_format = numbers.BUILTIN_FORMATS[7]
 
-    START_INDEX = 'D'
-    for index in range(MAX_OUTCOMES):
-        for col in ws[START_INDEX : chr(ord(START_INDEX) + 3)]:
-            for cell in col:
-                color = COLORS[int(index % 2)]
-                cell.fill = PatternFill(fill_type='solid', start_color=color, end_color=color)
-                cell.alignment = CENTER_ALIGNMENT
-                if cell.column % 4 == 3:
-                    cell.number_format = numbers.BUILTIN_FORMATS[7]
+#     START_INDEX = 'D'
+#     for index in range(MAX_OUTCOMES):
+#         for col in ws[START_INDEX : chr(ord(START_INDEX) + 3)]:
+#             for cell in col:
+#                 color = COLORS[int(index % 2)]
+#                 cell.fill = PatternFill(fill_type='solid', start_color=color, end_color=color)
+#                 cell.alignment = CENTER_ALIGNMENT
+#                 if cell.column % 4 == 3:
+#                     cell.number_format = numbers.BUILTIN_FORMATS[7]
                 
-        START_INDEX = chr(ord(START_INDEX) + 4)
+#         START_INDEX = chr(ord(START_INDEX) + 4)
 
-    for cell in ws['1']:
-        cell.border = TOP_ROW_BORDER
+#     for cell in ws['1']:
+#         cell.border = TOP_ROW_BORDER
 
-    for row in range(2, ARBITRAGE_EVENTS_COUNT + 2):
-        for cell in ws[str(row)]:
-            cell.border = NORMAL_ROW_BORDER
+#     for row in range(2, ARBITRAGE_EVENTS_COUNT + 2):
+#         for cell in ws[str(row)]:
+#             cell.border = NORMAL_ROW_BORDER
         
-    wb.save('upcoming_events_bets.xlsx')
+#     wb.save('upcoming_events_bets.xlsx')
 
 # %%
 
