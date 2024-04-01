@@ -19,9 +19,9 @@ import numpy as np
 # import openpyxl
 # from openpyxl import Workbook, load_workbook
 # from openpyxl.styles import Border, Side, Font, Alignment, PatternFill, numbers
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import os
-load_dotenv('.env')
+# load_dotenv('.env')
 def get_upcoming_odds():
     API_KEY = os.getenv('API_KEY')
     SPORT = 'upcoming'
