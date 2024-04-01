@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from logic import get_upcoming_odds, calculate_events, create_arbitrage_df, write_data_to_excel, format_excel
+from logic import get_upcoming_odds, calculate_events, create_arbitrage_df
 
 # Set page title and favicon
 st.set_page_config(page_title='Sports Betting Arbitrage', page_icon=':moneybag:')
@@ -29,10 +29,10 @@ if st.button('Find Arbitrage Opportunities'):
             dataframe, MAX_OUTCOMES, ARBITRAGE_EVENTS_COUNT = create_arbitrage_df(arbitrage_events)
             
             # Write the arbitrage data to the DataFrame
-            write_data_to_excel(arbitrage_events, dataframe)
+            # write_data_to_excel(arbitrage_events, dataframe)
             
-            # Format the Excel file
-            format_excel(MAX_OUTCOMES, ARBITRAGE_EVENTS_COUNT)
+            # # Format the Excel file
+            # format_excel(MAX_OUTCOMES, ARBITRAGE_EVENTS_COUNT)
             
             # Set column widths
             column_widths = [10, 15, 15] + [20] * (len(dataframe.columns) - 3)

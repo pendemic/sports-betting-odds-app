@@ -13,10 +13,10 @@
 
 # %%
 import requests
-import xlsxwriter
+# import xlsxwriter
 import pandas as pd
 import numpy as np
-import openpyxl
+# import openpyxl
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Border, Side, Font, Alignment, PatternFill, numbers
 from dotenv import load_dotenv
